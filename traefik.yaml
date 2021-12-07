@@ -1,0 +1,44 @@
+##全局配置文件
+
+##基础配置
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: true
+
+## dashboard配置
+api:
+  dashboard: true
+  insecure: true
+
+#日志配置
+log:
+  level: debug              ## DEBUG / PANIC / FATAL / ERROR / WARN / INFO
+  filePath: ./logs/traefik.log
+  format: common            ## common / json
+
+# 访问日志
+accessLog:
+  filePath: "./logs/access.log"
+  #bufferingSize: 100       # 100行
+
+# 自身的健康检查
+ping: {}
+
+###入口
+entryPoints:
+  web:
+    address: ":8888"
+    transport:
+      # lifeCycle:
+      #   requestAcceptGraceTimeout: 50
+      #   graceTimeOut: 10
+      respondingTimeouts:
+        readTimeout: 50
+        writeTimeout: 50
+        idleTimeout: 50
+
+## 动态配置提供者
+providers:
+  file:       ## 文件类型
+    directory: ./configs
+    watch: true

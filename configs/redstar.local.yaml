@@ -1,0 +1,14 @@
+## 红星网
+http:
+  routers:
+    redstar:
+      entryPoints:
+      - "web"         ## 可以定义更多,如https/tcp其他端口
+      rule: "Host(`redstar.local`)"
+      service: "service-redstar"
+
+  services:
+    service-redstar:
+      loadBalancer:
+        servers:
+        - url: "http://127.0.0.1:18080/"

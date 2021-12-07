@@ -1,0 +1,15 @@
+## 红星网
+## 这个文件是测试多个静态文件是否可以动态生效
+http:
+  routers:
+    redstar-dev:
+      entryPoints:
+      - "web"
+      rule: "Host(`redstar.dev`)"
+      service: "service-redstar-dev"
+
+  services:
+    service-redstar-dev:
+      loadBalancer:
+        servers:
+        - url: "http://127.0.0.1:18080/"
